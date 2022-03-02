@@ -20,7 +20,7 @@ class Grade{
     }
 }
 
-const subjects = ['Matematicas', 'Fisca', 'Quimica', 'Contabilidad', 'Finanzas']
+const subjects = ['Matematicas', 'Fisica', 'Quimica', 'Contabilidad', 'Finanzas']
 let grades = []
 
 for (const subject of subjects) {
@@ -35,8 +35,12 @@ for (const subject of subjects) {
         prompt (`Calificacion de ${subject}`) 
     } 
 }
+grades.reverse()
+
 console.log('El total de tus calificaciones es:', suma);
 console.log('Tu promedio es:', calcularPromedio(suma, contador))
+
+
 
 if (calcularPromedio(suma,contador) < 50) {
     console.log('Reprobaste, necesitas un promedio de 50 para aprobar') 
@@ -44,4 +48,4 @@ if (calcularPromedio(suma,contador) < 50) {
   console.log('Felicidades, has aprobado el curso')      
 }
 
-console.log(grades)
+console.log(grades);
