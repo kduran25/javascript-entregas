@@ -9,43 +9,62 @@ let entrada = '';
 let contador = 0;
 let suma = 0;
 
-
-const calcularPromedio = (total, conteoDeCalificaciones) => {
-    return total/conteoDeCalificaciones
-}
 class Grade{
     constructor(name, score){
         this.name = name
         this.score = score
     }
 }
+const subjects = ['Matematicas', 'Fisica', 'Quimica', 'Contabilidad', 'Finanzas'];
+let grades = [];
 
-const subjects = ['Matematicas', 'Fisica', 'Quimica', 'Contabilidad', 'Finanzas']
-let grades = []
+subjects.forEach(subject => {
+    let score = prompt(`Ingrese la calificacion de ${subject}`)
 
-for (const subject of subjects) {
-    let score = prompt (`Calificacion de ${subject}`)
-    grades.push(new Grade(subject, score))
-    
-    if(parseInt(score) >= 0 && parseInt(score) <= 100) {
+    if ( isNaN(parseInt(score)) || parseInt(score) > 100) {
+        while(isNaN(parseInt(score)) || parseInt(score) > 100){
+            alert('Calificacion no valida, ingresa las notas de nuevo (Notas de 0 a 100 en números)');
+            score = prompt(`Calificacion de ${subject}`);
+        }
         contador++
         suma = suma + parseInt(score)
-    } else {
-        alert('Calificacion no valida, ingresa las notas de nuevo')
-        prompt (`Calificacion de ${subject}`) 
-    } 
+        grades.push(new Grade(subject, score))
+    }else {
+        contador++
+        suma = suma + parseInt(score)
+        grades.push(new Grade(subject, score))
+    }
+})
+
+const calcularPromedio = (total, conteoDeCalificaciones) => {
+    return total/conteoDeCalificaciones
 }
-grades.reverse()
+ if (calcularPromedio(suma,contador) < 50) {
+     console.log('Reprobaste, necesitas un promedio de 50 para aprobar') 
+ } else{
+   console.log('Felicidades, has aprobado el curso')      
+ }
+ console.log('El total de tus calificaciones es:', suma);
+ console.log('Tu promedio es:', calcularPromedio(suma, contador))
+ console.log(grades);
 
-console.log('El total de tus calificaciones es:', suma);
-console.log('Tu promedio es:', calcularPromedio(suma, contador))
+// for (const subject of subjects) {
+//     let score = prompt (`Calificacion de ${subjects}`)
+// for (const subject of subjects){
+//     let score = prompt (`Calificacion de ${subject}`)
+// } while (parseInt(score) >= 0 && parseInt(score) <= 100) {
+//     grades.push(new Grade(subject, score))
+//     contador++
+//     suma = suma + parseInt(score)
+//     console.log('El total de tus calificaciones es:', suma);
+//     console.log('Tu promedio es:', calcularPromedio(suma, contador))
+//     } if (parseInt(score) > 100) {
+//         alert('Calificacion no valida, ingresa las notas de nuevo')
+//         let score = prompt (`Calificacion de ${subject}`)
+//     } 
 
 
 
-if (calcularPromedio(suma,contador) < 50) {
-    console.log('Reprobaste, necesitas un promedio de 50 para aprobar') 
-} else{
-  console.log('Felicidades, has aprobado el curso')      
-}
 
-console.log(grades);
+
+
